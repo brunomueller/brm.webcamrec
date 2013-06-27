@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<webcamr>
+  <webcamBookmark>
+    <webcamName>vadso</webcamName>
+    <webcamURL>http://www.vadso.kommune.no/webcam/havna_00001.jpg</webcamURL>
+    <imageFile>c:\temp\vadso.gif</imageFile>
+    <readDelay>30</readDelay>
+    <frameTime>750</frameTime>
+    <startTime>02.07.2012:14:38</startTime>
+    <endTime>02.07.2012:14:48</endTime>
+  </webcamBookmark>
+  <webcamBookmark>
+    <webcamName>Hardbrücke</webcamName>
+    <webcamURL>http://www.hardbruecke.ch/webcams/fullsize.jpg</webcamURL>
+    <imageFile>c:\temp\hardbruecke.gif</imageFile>
+    <readDelay>10</readDelay>
+    <frameTime>500</frameTime>
+    <startTime>30.11.2011:11:36</startTime>
+    <endTime>30.11.2011:11:46</endTime>
+  </webcamBookmark>
+</webcamr>

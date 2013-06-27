@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin id="brm.webcamrec" name="Webcam Recorder Plug-in"
+	version="1.0.0" provider-name="Bruno Müller"
+	class="brm.webcamrec.WebcamrecPlugin">
+
+	<runtime>
+		<library name="webcamrec.jar">
+			<export name="*" />
+		</library>
+	</runtime>
+
+	<requires>
+		<import plugin="org.eclipse.ui" />
+		<import plugin="org.eclipse.core.runtime" />
+		<import plugin="org.eclipse.ui.console" />
+
+		<!-- These are needed at run-time but not at build-time -->
+		<import plugin="org.eclipse.help" />
+		<import plugin="org.eclipse.help.ui" />
+		<import plugin="org.eclipse.help.webapp" />
+
+	</requires>
+
+	<extension id="application"
+		point="org.eclipse.core.runtime.applications">
+		<application>
+			<run class="brm.webcamrec.WebcamrecApplication"></run>
+		</application>
+	</extension>
+	<extension point="org.eclipse.ui.perspectives">
+		<perspective icon="icons/sample.gif"
+			class="brm.webcamrec.WebcamPerspective" fixed="true"
+			name="Webcam Perspective" id="brm.webcamrec.WebcamPerspective">
+		</perspective>
+	</extension>
+
+	<extension point="org.eclipse.ui.views">
+		<category name="Webcam" id="brm.webcamrec.WebcamCategory">
+		</category>
+		<view icon="icons/sample.gif"
+			class="brm.webcamrec.view.WebcamView"
+			category="brm.webcamrec.WebcamCategory" name="WebcamView"
+			id="brm.webcamrec.view.WebcamView">
+		</view>
+		<view class="brm.webcamrec.view.BrowserView"
+			icon="icons/internal_browser.gif"
+			category="brm.webcamrec.WebcamCategory" name="BrowserView"
+			id="brm.webcamrec.view.BrowserView">
+		</view>
+
+	</extension>
+	<extension point="org.eclipse.ui.viewActions">
+
+		<viewContribution id="brm.webcamrc.view.contribution"
+			targetID="brm.webcamrec.view.WebcamView">
+
+			<action toolbarPath="additions" label="New Bookmark"
+				icon="icons/new_bookmark.gif"
+				class="brm.webcamrec.actions.NewWebcamEntry"
+				tooltip="New Webcam Entry" style="push" state="false"
+				id="brm.webcamrec.actions.NewBookmark" />
+			<action class="brm.webcamrec.actions.DisplayRecording"
+				icon="icons/synced.gif" id="brm.webcamrec.actions.DisplayRecording"
+				label="Display Recording" state="true" style="toggle"
+				toolbarPath="additions" tooltip="Display Recording" />
+
+
+
+		</viewContribution>
+
+		<viewContribution id="brm.webcamrc.view.contribution"
+			targetID="brm.webcamrec.view.BrowserView">
+
+			<action toolbarPath="additions" label="Refresh"
+				icon="icons/refresh.gif"
+				class="brm.webcamrec.actions.BrowserRefresh" tooltip="Refresh"
+				style="push" state="false"
+				id="brm.webcamrec.actions.BrowserRefresh" />
+
+		</viewContribution>
+
+	</extension>
+
+	<extension point="org.eclipse.help.toc">
+		<toc file="html/toc.xml" primary="true"></toc>
+	</extension>
+	<extension id="webcamrec"
+		point="org.eclipse.core.runtime.products">
+		<product
+        application="brm.webcamrec.application"
+        name="Webcam Recorder">
+     <property
+           name="aboutImage"
+           value="webcamRecorder.gif"/>
+     <property
+           name="aboutText"
+           value="Webcam Recorder by Bruno Mueller"/>
+     <property
+           name="windowImages"
+           value="webcamRecorder16.gif,webcamRecorder32.gif"/>
+     <property
+           name="appName"
+           value="Webcam Recorder">
+     </property>
+  </product>
+	</extension>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page class="brm.webcamrec.preferences.WebcamPage"
+			id="brm.webcamrec.preferences.WebcamPage" name="Webcam Recorder" />
+		<page category="brm.webcamrec.preferences.WebcamPage"
+			class="brm.webcamrec.preferences.NewWebcamPage"
+			id="brm.webcamrec.preferences.NewWebcamPage"
+			name="New Webcam Entries" />
+		<page category="brm.webcamrec.preferences.WebcamPage"
+			class="brm.webcamrec.preferences.ProxyPage"
+			id="brm.webcamrec.preferences.ProxyPage" name="Proxy" />
+
+
+	</extension>
+	<extension id="webcamrec.preferences.initiliazer"
+		name="webcamrec.preferences.initiliazer"
+		point="org.eclipse.core.runtime.preferences">
+		<initializer
+			class="brm.webcamrec.preferences.NewWebcamInitializer" />
+		<initializer class="brm.webcamrec.preferences.ProxyInitializer" />
+	</extension>
+	<!--
+		<extension point="org.eclipse.ui.perspectiveExtensions">
+		<perspectiveExtension
+		targetID="org.eclipse.ui.resourcePerspective">
+		<view
+		ratio="0.5"
+		relationship="right"
+		relative="org.eclipse.ui.view.TaskList"
+		id="brm.webcamrec.view.SampleView" />
+		</perspectiveExtension>
+		</extension>
+	-->
+
+</plugin>
